@@ -2,8 +2,8 @@ import Project from './projects'
 
 export default class Task extends Project {
 
-    constructor(name, desc, due, priority, notes) {
-        super(name, desc, due);
+    constructor(name, desc, due, status, priority, notes) {
+        super(name, desc, due, status);
         this.priority = priority;
         this.notes = notes;
     }
@@ -48,7 +48,4 @@ export default class Task extends Project {
         return this.notes;
     }
 
-    sayHi() {
-        super.sayHi();
-    }
 }

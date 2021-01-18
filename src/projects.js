@@ -1,8 +1,9 @@
 export default class Project {
-    constructor(name, desc, due) {
+    constructor(name, desc, due, status) {
         this.name = name;
         this.desc = desc;
         this.due = due;
+        this.status = status;
     }
 
     set projectName(name) {
@@ -29,8 +30,16 @@ export default class Project {
         return this.due
     }
 
-    sayHi() {
-        console.log('Project Hello')
+    set projectStatus(status) {
+        return this.status = status
+    }
+
+    get projectStatus() {
+        return this.status
+    }
+
+    checkStatus() {
+        console.log(`${this.name} is ${this.status.toLowerCase()}.`);
     }
 
 }
