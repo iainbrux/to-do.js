@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to-do.js | iainbrux</title>
 </head>
+
 <body>
-    <script src="main.js"></script>
+    <div class="content">
+        <div class="container">
+            <header>
+                <h1>My to-do list</h1>
+            </header>
+            <section class="add-new">
+                This is where you click to add a new project
+            </section>
+        </div>
+        <div class="bg-modal">
+            <div class="modal-content">
+                <h2 class="title">This is a title</h2>
+                <label class="input-fields">
+                    <input type="text" name="input-project" id="name" placeholder="Project Name">
+                    <input type="text" name="input-project" id="name" placeholder="Description">
+                    <input type="text" name="input-project" id="name" placeholder="Due Date">
+                    <input type="text" name="input-project" id="name" placeholder="Status">
+                </label>
+            </div>
+        </div>
+    </div>
 </body>
+<footer>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</footer>
+
 </html>
