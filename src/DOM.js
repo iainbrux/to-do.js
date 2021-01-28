@@ -5,12 +5,6 @@ let projects = [];
 export function render() {
     let button = document.querySelector('.add-new');
     button.addEventListener('click', () => displayModal())
-
-    let x = document.querySelector('.x');
-    x.addEventListener('click', () => exitModal())
-
-    let submitButton = document.querySelector('.submit-button');
-    submitButton.addEventListener('click', () => submit());
 }
 
 function exitModal() {
