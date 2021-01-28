@@ -1,6 +1,6 @@
-import Project from "./projects";
+import Task from "./projects";
 
-let projects = [];
+let tasks = [];
 
 export function render() {
     let newTaskButton = document.querySelector('.submit');
@@ -11,13 +11,13 @@ export function render() {
 
 function submit() {
 
-    const newProject = new Project();
+    const newTask = new Task();
 
     let name = document.querySelector('#task').value;
     let due = document.querySelector('#due-date').value;
 
-    newProject.projectName = name;
-    newProject.projectDate = due;
+    newTask.projectName = name;
+    newTask.projectDate = due;
 
     projects.push(newProject);
 
@@ -32,6 +32,8 @@ function submit() {
     //     let statusDiv = document.createElement('div')
 
     //     projectDiv.classList.add('project');
+
+
     //     titleDiv.classList.add('title');
     //     descriptionDiv.classList.add('description');
     //     dueDiv.classList.add('due');
@@ -48,7 +50,9 @@ function submit() {
 
     // })();
 
-    console.log(projects);
+    newTask.checkStatus();
+
+    console.log(tasks);
 }
 
 function deleteFromTasks() {
