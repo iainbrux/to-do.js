@@ -23,43 +23,52 @@
             </div>
 
             <section class="tasks">
-                <div class="task">
-                    <div class="description">Complete website for digital portfolio</div>
-                    <div class="due">23rd November - make this a date selection</div>
-                    <div class="status">Almost completed</div>
+                <div class="tasks-container">
+                    <div class="task">
+                        <label for="status"></label>
+                        <input type="checkbox" name="status" id="status">
+                        <div class="description">Complete website for digital portfolio</div>
+                        <div class="due">23rd November - make this a date selection</div>
+                        <div class="btns">
+                            <div class="edit">Edit</div>
+                            <div class="delete">Delete</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <label for="status"></label>
+                        <input type="checkbox" name="status" id="status">
+                        <div class="description">Finish to-do list</div>
+                        <div class="due">10th February - make this a date selection</div>
+                        <div class="btns">
+                            <div class="edit">Edit</div>
+                            <div class="delete">Delete</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <label for="status"></label>
+                        <input type="checkbox" name="status" id="status">
+                        <div class="description">Do crypto currency calculator</div>
+                        <div class="due">28th feb - make this a date selection</div>
+                        <div class="btns">
+                            <div class="edit">Edit</div>
+                            <div class="delete">Delete</div>
+                        </div>
+                    </div>
+                    <div class="to-do-add to-do-active">
+                        <input type="text" name="description id=" description" placeholder="Task Name">
+                        <input type="date" name="due-date" id="due-date">
+                        <div class="btns">
+                            <div class="delete">Delete</div>
+                            <div class="submit">Submit</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="task">
-                    <div class="description">Finish to-do list</div>
-                    <div class="due">10th February - make this a date selection</div>
-                    <div class="status">On to a winner</div>
-                </div>
-                <div class="task">
-                    <div class="description">Do crypto currency calculator</div>
-                    <div class="due">28th feb - make this a date selection</div>
-                    <div class="status">Not yet started</div>
+                <div class="btn-container">
+                    <div class="new-task-btn">New task...</div>
                 </div>
             </section>
         </div>
 
-        <section class="add-task">
-            <div class="new-task">New task...</div>
-        </section>
-
-        <div class="bg-modal">
-            <div class="modal-content">
-                <div class="x">+</div>
-                <h2 class="title">Add a new project</h2>
-                <label class="input-fields">
-                    <input type="text" name="input-project" id="name" placeholder="Project Name">
-                    <input type="text" name="input-desc" id="desc" placeholder="Description">
-                    <input type="text" name="input-date" id="due" placeholder="Due Date">
-                    <input type="text" name="input-status" id="status" placeholder="Status">
-                </label>
-                <div class="submit-button">
-                    ADD PROJECT
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 <footer>
