@@ -1,17 +1,21 @@
 import submit from "./submit";
+import deleteFromLocalStorage from './deleteFromLS';
 
 export function render() {
     addToTasks();
-    deleteFromTasks();
+    deleteFromTasks()
 }
 
-function deleteFromTasks() {
+export function deleteFromTasks() {
 
     let tasks = document.querySelectorAll('.task');
 
     tasks.forEach(task => {
         let deleteBtn = task.querySelector('.delete');
-        deleteBtn.addEventListener('click', () => task.remove());
+        deleteBtn.addEventListener('click', () => {
+            // deleteFromLocalStorage(0);
+            task.remove();
+        });
     });
 
 }

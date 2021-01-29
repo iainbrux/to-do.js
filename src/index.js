@@ -1,4 +1,3 @@
-import { render } from './DOM'
+import { render } from './DOM';
 
 render();
-

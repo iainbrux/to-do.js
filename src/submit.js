@@ -1,10 +1,12 @@
 import Task from "./Task";
+import {default as addToLocalStorage} from './addToLS';
+import deleteFromTasks from './DOM';
 
 //This function extends to DOM.js but due to the size was seperated into it's own file
 
-export default function submit() {
+let tasks = [];
 
-    let tasks = [];
+export default function submit() {
 
     const newTask = new Task();
 
@@ -76,6 +78,10 @@ export default function submit() {
 
     newTask.checkStatus();
 
+    addToLocalStorage(newTask);
+
     console.log(tasks);
 
 }
+
+export { tasks }
