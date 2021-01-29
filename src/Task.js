@@ -12,16 +12,16 @@ export default class Task {
         return this.name
     }
 
-    set tasktDate(date) {
-        return this.due = date
+    set taskDate(due) {
+        return this.due = due
     }
 
-    get tasktDate() {
+    get taskDate() {
         return this.due
     }
 
     checkStatus() {
-        console.log(`${this.name} is due on ${this.date}.`);
+        console.log(`${this.name} is due on ${this.due}.`);
     }
 
 }
