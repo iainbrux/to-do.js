@@ -1,4 +1,5 @@
 import submit from "./submit";
+import importFromLocalStorage from './importFromLocalStorage';
 
 
 function render() {
@@ -6,6 +7,11 @@ function render() {
     deleteFromTasks();
     clearTaskInput();
     editTask();
+
+    if (localStorage.length > 0) {
+        importFromLocalStorage();
+    }
+    
 }
 
 let taskName = document.querySelector('#task');
@@ -49,7 +55,7 @@ function editTask() {
 
 }
 
-function addToTasks() { // For function info see submit.js
+function addToTasks() {
 
     let submitButton = document.querySelector('.submit');
     submitButton.addEventListener('click', () => {
