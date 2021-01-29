@@ -7,11 +7,13 @@ function render() {
     deleteFromTasks();
     clearTaskInput();
     editTask();
+    newTaskButton();
+    exitButton();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
     }
-    
+
 }
 
 let taskName = document.querySelector('#task');
@@ -58,6 +60,7 @@ function editTask() {
 function addToTasks() {
 
     let submitButton = document.querySelector('.submit');
+
     submitButton.addEventListener('click', () => {
         (taskName.value === "" || taskDate.value === "") ? alert('Please complete all input fields.'): submit();
     });
@@ -72,6 +75,24 @@ function clearTaskInput() {
         taskName.value = "";
         taskDate.value = "";
     })
+
+}
+
+function newTaskButton() {
+
+    let newToDo = document.querySelector('.to-do-add');
+    let newTask = document.querySelector('.new-task-btn');
+
+    newTask.addEventListener('click', () => newToDo.style.display = "flex");
+
+}
+
+function exitButton() {
+
+    let newToDo = document.querySelector('.to-do-add');
+    let exit = document.querySelector('.exit');
+    
+    exit.addEventListener('click', () => newToDo.style.display = "none");
 
 }
 

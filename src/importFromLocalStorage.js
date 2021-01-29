@@ -1,5 +1,7 @@
 import deleteFromTasks, { editTask } from './DOM'
 
+//Don't forget to add storage for checkbox status
+
 export default function importFromLocalStorage() {
 
     let taskNames = Object.keys(localStorage); //This creates an array of all the keys from the localStorage object to use in querying the indices in localStorage
@@ -71,6 +73,5 @@ export default function importFromLocalStorage() {
         })();
 
     })
-
 
 }
