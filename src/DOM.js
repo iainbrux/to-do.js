@@ -1,20 +1,23 @@
 import submit from "./submit";
-import deleteFromLocalStorage from './deleteFromLS';
 
-export function render() {
+
+function render() {
     addToTasks();
     deleteFromTasks()
 }
 
-export function deleteFromTasks() {
+export default function deleteFromTasks() {
 
-    let tasks = document.querySelectorAll('.task');
+    let tasksHTML = document.querySelectorAll('.task');
 
-    tasks.forEach(task => {
-        let deleteBtn = task.querySelector('.delete');
+    tasksHTML.forEach(node => {
+
+        let thisTask = node.querySelector('.description').innerText;
+        let deleteBtn = node.querySelector('.delete');
+
         deleteBtn.addEventListener('click', () => {
-            // deleteFromLocalStorage(0);
-            task.remove();
+            localStorage.removeItem(thisTask);
+            node.remove();
         });
     });
 
@@ -25,4 +28,8 @@ function addToTasks() { // For function info see submit.js
     let newTaskButton = document.querySelector('.submit');
     newTaskButton.addEventListener('click', () => submit());
 
+}
+
+export {
+    render
 }

@@ -1,20 +1,19 @@
 import Task from "./Task";
-import {default as addToLocalStorage} from './addToLS';
 import deleteFromTasks from './DOM';
 
 //This function extends to DOM.js but due to the size was seperated into it's own file
 
-let tasks = [];
+export let tasks = [];
 
 export default function submit() {
 
     const newTask = new Task();
 
-    let name = document.querySelector('#task').value;
-    let due = document.querySelector('#due-date').value;
+    let name = document.querySelector('#task');
+    let due = document.querySelector('#due-date');
 
-    newTask.taskName = name;
-    newTask.taskDate = due;
+    newTask.taskName = name.value;
+    newTask.taskDate = due.value;
 
     tasks.push(newTask);
 
@@ -78,10 +77,9 @@ export default function submit() {
 
     newTask.checkStatus();
 
-    addToLocalStorage(newTask);
+    let objectJSON = JSON.stringify(newTask);
+    localStorage.setItem(name.value, objectJSON);
 
-    console.log(tasks);
+    name.value = "";
 
 }
-
-export { tasks }
