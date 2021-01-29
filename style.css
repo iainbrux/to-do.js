@@ -48,7 +48,7 @@ body {
 }
 
 .side-bar {
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 .side-bar h1 {
@@ -73,7 +73,7 @@ header h1 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: rgb(68, 68, 68);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .btns {
@@ -86,15 +86,18 @@ header h1 {
     margin: 20px;
     align-items: center;
     justify-content: space-between;
-    background-color: grey;
+    transition-duration: 0.5s;
 }
 
 .to-do-add {
     display: none;
+    margin-top: 0px;
 }
 
-.to-do-active {
-    display: flex;
+.task:hover,
+.to-do-add:hover {
+    background-color: rgba(0, 217, 255, 0.5);
+    transition-duration: 0.5s;
 }
 
 .task .description,
@@ -103,7 +106,16 @@ header h1 {
     margin: 20px;
     padding: 20px;
     flex: 1;
-    background-color: lightgrey;
+    color: white;
+    font-size: 20px;
+    transition-duration: 0.5s;
+}
+
+.task .description:hover,
+.task .due:hover {
+    background-color: rgba(211, 211, 211, 0.7);
+    transition-duration: 0.5s;
+    color: black;
 }
 
 .task input[type="checkbox"] {
@@ -118,7 +130,8 @@ header h1 {
 
 .btns .delete,
 .btns .submit,
-.btns .edit {
+.btns .edit,
+.btns .exit {
     margin: 20px;
     padding: 20px;
     align-items: center;
@@ -128,7 +141,8 @@ header h1 {
 
 .btns .delete:hover,
 .btns .submit:hover,
-.btns .edit:hover {
+.btns .edit:hover,
+.btns .exit:hover {
     cursor: pointer;
 }
 
@@ -171,6 +185,7 @@ header h1 {
     padding: 20px;
     justify-content: flex-end;
     max-width: 200px;
+    cursor: pointer;
 }
 
 .add-task {
