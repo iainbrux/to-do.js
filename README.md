@@ -2,6 +2,7 @@ Hello! This is my project to showcase my CRUD capabilities (no pun!) and to stap
 - DOM Manipulation
 - Webpack
 - HTML, CSS & JS
+- Local Storage
 
 Project status /-- IN PROGRESS --/
 
