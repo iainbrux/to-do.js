@@ -1,11 +1,11 @@
 import Task from "./Task";
-import deleteFromTasks from './DOM';
+import deleteFromTasks, {editTask} from './DOM';
 
 //This function extends to DOM.js but due to the size was seperated into it's own file
 
-export let tasks = [];
-
 export default function submit() {
+
+    let tasks = [];
 
     const newTask = new Task();
 
@@ -54,6 +54,7 @@ export default function submit() {
 
             editBtn.classList.add('edit');
             editBtn.innerText = "Edit";
+            editBtn.addEventListener('click', () => editTask());
 
             btnsDiv.append(editBtn, deleteBtn);
 
@@ -81,5 +82,6 @@ export default function submit() {
     localStorage.setItem(name.value, objectJSON);
 
     name.value = "";
+    due.value = "";
 
 }

@@ -10,3 +10,7 @@ Features I will aim to add:
 - Add local storage support
 - Configure JS for dom
 - General styling improvements
+
+Current known bugs:
+
+- Takes two clicks on either edit or delete button from user created tasks to fire event
