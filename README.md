@@ -8,7 +8,7 @@ Project status /-- IN PROGRESS --/
 
 Features I will aim to add:
 - Add firebase / mongoDB support
-- Add local storage support
+- Add local storage support (DONE! 29/01/2021)
 - Configure JS for dom
 - General styling improvements
 
