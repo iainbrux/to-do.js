@@ -1,7 +1,6 @@
 import submit from "./submit";
-import importFromLocalStorage from './importFromLocalStorage';
+import importFromLocalStorage from './importFromLS';
 import checkboxStatus from './checkboxStatusLS';
-
 
 function render() {
     addToTasks();
@@ -21,7 +20,7 @@ function render() {
 let taskName = document.querySelector('#task');
 let taskDate = document.querySelector('#due-date');
 
-export default function deleteFromTasks() {
+function deleteFromTasks() {
     
     let tasksHTML = document.querySelectorAll('.task');
 
