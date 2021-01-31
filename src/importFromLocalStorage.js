@@ -1,14 +1,15 @@
-import deleteFromTasks, { editTask } from './DOM'
-
-//Don't forget to add storage for checkbox status
+import deleteFromTasks, {
+    editTask
+} from './DOM'
+import checkboxStatus from './checkboxStatusLS';
 
 export default function importFromLocalStorage() {
 
-    let taskNames = Object.keys(localStorage); //This creates an array of all the keys from the localStorage object to use in querying the indices in localStorage
+    let taskNames = Object.keys(localStorage);
     let tasks = [];
 
     taskNames.forEach(task => {
-        tasks.push(JSON.parse(localStorage.getItem(task))) //Queries each key and pushes the parsed object into the tasks array
+        tasks.push(JSON.parse(localStorage.getItem(task)))
     })
 
     tasks.forEach(task => {
@@ -30,6 +31,29 @@ export default function importFromLocalStorage() {
                 checkbox.type = "checkbox";
                 checkbox.name = "status";
                 checkbox.id = "status";
+                checkbox.addEventListener('click', function updateStatus() { //Cannot prevent DRY for now (bug prevention)
+
+                    let taskNames = Object.keys(localStorage);
+                    let tasks = [];
+
+                    taskNames.forEach(task => {
+                        tasks.push(JSON.parse(localStorage.getItem(task)));
+                    })
+
+                    tasks.forEach(task => {
+
+                        let query = task.name;
+                        let thisTask = tasks.find(object => object.name === query);
+                        let isChecked = checkbox.checked;
+
+                        thisTask.status = isChecked;
+
+                        let taskJSON = JSON.stringify(task);
+                        localStorage.setItem(query, taskJSON);
+
+                    })
+
+                });
 
             })();
 
@@ -46,7 +70,12 @@ export default function importFromLocalStorage() {
 
                 deleteBtn.classList.add('delete');
                 deleteBtn.innerText = "Delete";
-                deleteBtn.addEventListener('click', () => deleteFromTasks());
+                deleteBtn.addEventListener('click', () => {
+
+                    localStorage.removeItem(descDiv.innerText);
+                    taskDiv.remove();
+
+                })
 
                 editBtn.classList.add('edit');
                 editBtn.innerText = "Edit";
@@ -60,6 +89,7 @@ export default function importFromLocalStorage() {
 
                 descDiv.innerText = task.name;
                 dueDiv.innerText = task.due;
+                checkbox.checked = task.status;
 
             })();
 

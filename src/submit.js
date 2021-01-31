@@ -1,5 +1,8 @@
 import Task from "./Task";
-import deleteFromTasks, {editTask} from './DOM';
+import deleteFromTasks, {
+    editTask
+} from './DOM';
+import checkboxStatus from './checkboxStatusLS';
 
 //This function extends to DOM.js but due to the size was seperated into it's own file
 
@@ -14,6 +17,7 @@ export default function submit() {
 
     newTask.taskName = name.value;
     newTask.taskDate = due.value;
+    newTask.status = null;
 
     tasks.push(newTask);
 
@@ -34,6 +38,29 @@ export default function submit() {
             checkbox.type = "checkbox";
             checkbox.name = "status";
             checkbox.id = "status";
+            checkbox.addEventListener('click', function updateStatus() { //Cannot prevent DRY for now (bug prevention)
+
+                let taskNames = Object.keys(localStorage);
+                let tasks = [];
+
+                taskNames.forEach(task => {
+                    tasks.push(JSON.parse(localStorage.getItem(task)));
+                })
+
+                tasks.forEach(task => {
+
+                    let query = task.name;
+                    let thisTask = tasks.find(object => object.name === query);
+                    let isChecked = checkbox.checked;
+
+                    thisTask.status = isChecked;
+
+                    let taskJSON = JSON.stringify(task);
+                    localStorage.setItem(query, taskJSON);
+
+                })
+
+            });
 
         })();
 
@@ -50,7 +77,12 @@ export default function submit() {
 
             deleteBtn.classList.add('delete');
             deleteBtn.innerText = "Delete";
-            deleteBtn.addEventListener('click', () => deleteFromTasks());
+            deleteBtn.addEventListener('click', () => {
+
+                localStorage.removeItem(descDiv.innerText);
+                taskDiv.remove();
+
+            })
 
             editBtn.classList.add('edit');
             editBtn.innerText = "Edit";

@@ -1,5 +1,6 @@
 import submit from "./submit";
 import importFromLocalStorage from './importFromLocalStorage';
+import checkboxStatus from './checkboxStatusLS';
 
 
 function render() {
@@ -9,6 +10,7 @@ function render() {
     editTask();
     newTaskButton();
     exitButton();
+    checkboxStatus();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
