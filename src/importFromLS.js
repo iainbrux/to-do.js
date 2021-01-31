@@ -1,3 +1,5 @@
+import editNode, { updateStatus } from './buttonsConfig';
+
 export default function importFromLocalStorage() {
 
     let taskNames = Object.keys(localStorage);
@@ -26,29 +28,7 @@ export default function importFromLocalStorage() {
                 checkbox.type = "checkbox";
                 checkbox.name = "status";
                 checkbox.id = "status";
-                checkbox.addEventListener('click', function updateStatus() { //Cannot prevent DRY for now (bug prevention)
-
-                    let taskNames = Object.keys(localStorage);
-                    let tasks = [];
-
-                    taskNames.forEach(task => {
-                        tasks.push(JSON.parse(localStorage.getItem(task)));
-                    })
-
-                    tasks.forEach(task => {
-
-                        let query = task.name;
-                        let thisTask = tasks.find(object => object.name === query);
-                        let isChecked = checkbox.checked;
-
-                        thisTask.status = isChecked;
-
-                        let taskJSON = JSON.stringify(task);
-                        localStorage.setItem(query, taskJSON);
-
-                    })
-
-                });
+                checkbox.addEventListener('click', () => updateStatus(checkbox));
 
             })();
 
@@ -74,18 +54,7 @@ export default function importFromLocalStorage() {
 
                 editBtn.classList.add('edit');
                 editBtn.innerText = "Edit";
-                editBtn.addEventListener('click', function editTask() {
-
-                    let taskName = document.querySelector('#task');
-                    let taskDate = document.querySelector('#due-date');
-                    let newToDo = document.querySelector('.to-do-add');
-
-                    newToDo.style.display = "flex";
-                    taskDiv.remove();
-                    taskName.value = descDiv.innerText;
-                    taskDate.value = dueDiv.innerText;
-    
-                });
+                editBtn.addEventListener('click', () => editNode(taskDiv, descDiv.innerText, dueDiv.innerText));
 
                 btnsDiv.append(editBtn, deleteBtn);
 

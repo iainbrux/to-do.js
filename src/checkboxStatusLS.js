@@ -1,5 +1,8 @@
 export default function checkboxStatus() {
 
+    /* When code is refactored to import from buttonsConfig.js, the parameter throws an error
+    of e.remove() is not a function & needs debugging, however this code works perfectly for now.*/
+
     let checkboxes = document.querySelectorAll('#status');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('click', function updateStatus() {

@@ -1,6 +1,7 @@
 import submit from "./submit";
 import importFromLocalStorage from './importFromLS';
 import checkboxStatus from './checkboxStatusLS';
+import removeNode from './buttonsConfig';
 
 function render() {
     addToTasks();
@@ -21,7 +22,7 @@ let taskName = document.querySelector('#task');
 let taskDate = document.querySelector('#due-date');
 
 function deleteFromTasks() {
-    
+
     let tasksHTML = document.querySelectorAll('.task');
 
     tasksHTML.forEach(node => {
@@ -41,18 +42,14 @@ function deleteFromTasks() {
 function editTask() {
 
     let tasksHTML = document.querySelectorAll('.task');
-    
+
     tasksHTML.forEach(node => {
 
         let thisTask = node.querySelector('.description').innerText;
         let thisDate = node.querySelector('.due').innerText;
         let editBtn = node.querySelector('.edit');
 
-        editBtn.addEventListener('click', () => {
-            node.remove();
-            taskName.value = thisTask;
-            taskDate.value = thisDate;
-        });
+        editBtn.addEventListener('click', () => removeNode(node, thisTask, thisDate));
 
     });
 
@@ -92,12 +89,11 @@ function exitButton() {
 
     let newToDo = document.querySelector('.to-do-add');
     let exit = document.querySelector('.exit');
-    
+
     exit.addEventListener('click', () => newToDo.style.display = "none");
 
 }
 
 export {
-    render,
-    editTask
+    render
 }
