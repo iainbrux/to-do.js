@@ -1,4 +1,4 @@
-export function editNode(node, task, date) {
+export default function editNode(node, task, date) {
 
     let taskName = document.querySelector('#task');
     let taskDate = document.querySelector('#due-date');
