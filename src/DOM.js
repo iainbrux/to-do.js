@@ -2,6 +2,7 @@ import submit from "./submit";
 import importFromLocalStorage from './importFromLS';
 import checkboxStatus from './checkboxStatusLS';
 import removeNode from './buttonsConfig';
+import addProjectToDOM from "./renderProject";
 
 function render() {
     addToTasks();
@@ -11,6 +12,7 @@ function render() {
     newTaskButton();
     exitButton();
     checkboxStatus();
+    addNewProject();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
@@ -81,16 +83,44 @@ function newTaskButton() {
     let newToDo = document.querySelector('.to-do-add');
     let newTask = document.querySelector('.new-task-btn');
 
-    newTask.addEventListener('click', () => newToDo.style.display = "flex");
+    newTask.addEventListener('click', () => {
+        newToDo.style.display = "flex";
+        newTask.style.display = "none"
+    });
 
 }
 
 function exitButton() {
 
+    let newTaskBtn = document.querySelector('.new-task-btn');
     let newToDo = document.querySelector('.to-do-add');
     let exit = document.querySelector('.exit');
 
-    exit.addEventListener('click', () => newToDo.style.display = "none");
+    exit.addEventListener('click', () => {
+        newToDo.style.display = "none";
+        newTaskBtn.style.display = "flex"
+    });
+
+}
+
+function addNewProject() {
+
+    let addNewProjectDiv = document.querySelector('.new-project');
+
+    let addNewBtn = document.querySelector('.add-new');
+    addNewBtn.addEventListener('click', () => {
+        addNewProjectDiv.style.display = "flex";
+        addNewBtn.style.display = "none";
+    });
+
+    let projectSubmitBtn = document.querySelector('.project-submit');
+    projectSubmitBtn.addEventListener('click', () => addProjectToDOM());
+
+    let projectExitBtn = document.querySelector('.project-exit');
+    projectExitBtn.addEventListener('click', () => {
+        addNewProjectDiv.style.display = "none";
+        addNewBtn.style.display = "flex";
+    });
 
 }
 
