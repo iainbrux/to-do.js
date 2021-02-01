@@ -1,8 +1,7 @@
 html,
 body {
     font-family: 'Inter', sans-serif;
-    background-image: url('./imgs/16932.jpg');
-    background-size: cover;
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/prism.png");
 }
 
 @media only screen and (max-width: 400px) {
@@ -52,6 +51,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 355px;
     width: 25%;
     position: relative;
 }
@@ -66,14 +66,6 @@ body {
 
 .projects {
     width: 100%;
-}
-
-.projects .title {
-    background-color: lightgrey;
-    padding: 10px;
-    font-size: 20px;
-    margin: 20px;
-    flex: 1;
 }
 
 header h2 {
@@ -160,7 +152,10 @@ header h2 {
 .btns .delete,
 .btns .submit,
 .btns .edit,
-.btns .exit {
+.btns .exit,
+.project-btns .project-delete,
+.project-btns .project-exit,
+.project-btns .project-submit {
     margin: 20px;
     padding: 20px;
     align-items: center;
@@ -173,7 +168,10 @@ header h2 {
 .btns .delete:hover,
 .btns .submit:hover,
 .btns .edit:hover,
-.btns .exit:hover {
+.btns .exit:hover,
+.project-btns .project-delete:hover,
+.project-btns .project-exit:hover,
+.project-btns .project-submit:hover {
     cursor: pointer;
 }
 
@@ -233,19 +231,6 @@ header h2 {
     margin-right: 25px;
 }
 
-.input-fields input[type="text"] {
-    height: 40px;
-    width: 400px;
-    margin: 20px auto;
-    border-radius: 10px;
-    padding-left: 30px;
-    font-family: 'Inter', 'sans-serif';
-    outline: none;
-    font-size: 18px;
-    font-weight: 600;
-    background-color: darkgrey;
-}
-
 .add-new {
     width: 100%;
     display: flex;
@@ -260,7 +245,8 @@ header h2 {
     cursor: pointer;
 }
 
-.add-new .title {
+.add-new .title,
+.projects .title {
     flex: 1;
     margin: 20px;
     padding: 20px;
@@ -276,4 +262,32 @@ header h2 {
     height: 70vh;
     width: 100vw;
     margin-top: 40px;
+}
+
+.new-project {
+    width: 100%;
+    display: none;
+}
+
+.project-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-div input[type="text"] {
+    flex: 1;
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: lightgrey;
+    border: none;
+}
+
+.project-btns {
+    display: flex;
+    justify-content: space-around;
 }
