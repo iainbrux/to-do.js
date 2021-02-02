@@ -1,14 +1,24 @@
+import { render } from './DOM';
 import addTaskToDOM from './renderTask';
 
 export default function importFromLocalStorage() {
 
-    let taskNames = Object.keys(localStorage);
-    let tasks = [];
+    let title = document.querySelector('.project-title').innerText;
 
-    taskNames.forEach(task => {
-        tasks.push(JSON.parse(localStorage.getItem(task)))
-    })
+    let projectNames = Object.keys(localStorage);
+    let projects = [];
 
-    tasks.forEach(task => {addTaskToDOM(task)})
+    projectNames.forEach(key => projects.push(JSON.parse(localStorage.getItem(key))))
+
+    console.log(projectNames)
+
+    // projects.forEach(project => {
+    //     console.log(projects);
+    //     // let task = project.pop();
+    //     console.log(task);
+    //     addTaskToDOM(task);
+    // })
+
+    // renderSpecific.forEach(task => addTaskToDOM(task));
 
 }

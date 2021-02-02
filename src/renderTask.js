@@ -3,6 +3,7 @@ import editNode, { updateStatus } from './buttonsConfig';
 export default function addTaskToDOM(task) {
 
     let container = document.querySelector('.tasks-container');
+    let thisProject = document.querySelector('.project-title').innerText;
 
     let taskDiv = document.createElement('div');
     let descDiv = document.createElement('div');
@@ -30,15 +31,24 @@ export default function addTaskToDOM(task) {
 
     })();
 
+    (function addDataToDivs() {
+
+        descDiv.innerText = task.name;
+        dueDiv.innerText = task.due;
+        checkbox.checked = task.status;
+
+    })();
+
     (function addButtonsToTaskDiv() {
 
         deleteBtn.classList.add('delete');
         deleteBtn.innerText = "Delete";
         deleteBtn.addEventListener('click', () => {
 
-            localStorage.removeItem(descDiv.innerText);
+            // localStorage.removeItem(thisProject[descDiv.innerText]);
             taskDiv.remove();
-
+            let test = JSON.parse(localStorage[thisProject])
+            console.log('This is test:' + test)
         })
 
         editBtn.classList.add('edit');
@@ -46,14 +56,6 @@ export default function addTaskToDOM(task) {
         editBtn.addEventListener('click', () => editNode(taskDiv, descDiv.innerText, dueDiv.innerText));
 
         btnsDiv.append(editBtn, deleteBtn);
-
-    })();
-
-    (function addDataToDivs() {
-
-        descDiv.innerText = task.name;
-        dueDiv.innerText = task.due;
-        checkbox.checked = task.status;
 
     })();
 

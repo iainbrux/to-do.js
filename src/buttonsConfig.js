@@ -1,3 +1,5 @@
+import importFromLocalStorage from "./importFromLS";
+
 export default function editNode(node, task, date) {
 
     let taskName = document.querySelector('#task');
@@ -11,7 +13,7 @@ export default function editNode(node, task, date) {
 
 }
 
-export function updateStatus(checkbox) {
+function updateStatus(checkbox) {
 
     let taskNames = Object.keys(localStorage);
     let tasks = [];
@@ -33,4 +35,21 @@ export function updateStatus(checkbox) {
 
     })
 
+}
+
+function renderTasksForProject() {
+
+    let tasksContainer = document.querySelector('.tasks-container');
+    let newToDo = document.querySelector('.to-do-add');
+
+    tasksContainer.innerHTML = "";
+    newToDo.style.display = "flex";
+
+    importFromLocalStorage();
+
+}
+
+export {
+    updateStatus,
+    renderTasksForProject
 }

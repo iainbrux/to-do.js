@@ -3,6 +3,7 @@ import importFromLocalStorage from './importFromLS';
 import checkboxStatus from './checkboxStatusLS';
 import removeNode from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
+import renderTasksForProject from './buttonsConfig';
 
 function render() {
     addToTasks();
@@ -26,6 +27,7 @@ let taskDate = document.querySelector('#due-date');
 function deleteFromTasks() {
 
     let tasksHTML = document.querySelectorAll('.task');
+    let thisProject = document.querySelector('.project-title');
 
     tasksHTML.forEach(node => {
 
@@ -113,14 +115,38 @@ function addNewProject() {
         addNewBtn.style.display = "none";
     });
 
-    let projectSubmitBtn = document.querySelector('.project-submit');
-    projectSubmitBtn.addEventListener('click', () => addProjectToDOM());
-
     let projectExitBtn = document.querySelector('.project-exit');
     projectExitBtn.addEventListener('click', () => {
         addNewProjectDiv.style.display = "none";
         addNewBtn.style.display = "flex";
     });
+
+    let projectSubmitBtn = document.querySelector('.project-submit');
+    projectSubmitBtn.addEventListener('click', () => {
+        addProjectToDOM();
+        thisThing();
+    });
+
+}
+
+function thisThing() {
+    let projects = document.querySelectorAll('.title');
+
+    projects.forEach(project => {
+        project.addEventListener('click', renderTasksForProject = () => {
+
+            let tasksContainer = document.querySelector('.tasks-container');
+            let newToDo = document.querySelector('.to-do-add');
+            let projectTitle = document.querySelector('.project-title');
+
+            tasksContainer.innerHTML = "";
+            newToDo.style.display = "flex";
+            projectTitle.innerText = project.innerText;
+
+            importFromLocalStorage();
+
+        });
+    })
 
 }
 

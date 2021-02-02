@@ -7,7 +7,13 @@ export default function addProjectToDOM() {
 
     let projectDiv = document.createElement('div');
 
+    let regex = /\s/gi;
+    let regexQuery = projectName.value;
+    let className = regexQuery.replace(regex, '-');
+
+
     projectDiv.classList.add('title');
+    projectDiv.id = className;
     projectDiv.innerText = projectName.value;
     projects.append(projectDiv);
     newProject.style.display = "none";
