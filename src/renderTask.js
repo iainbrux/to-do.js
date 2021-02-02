@@ -33,9 +33,17 @@ export default function addTaskToDOM(task) {
 
     (function addDataToDivs() {
 
-        descDiv.innerText = task.name;
-        dueDiv.innerText = task.due;
-        checkbox.checked = task.status;
+        let innerData = null;
+
+        for (let key in task) {
+            descDiv.innerText = key;
+            innerData = task[key];
+        }
+
+        console.log(innerData)
+
+        dueDiv.innerText = innerData.due;
+        checkbox.checked = innerData.status;
 
     })();
 

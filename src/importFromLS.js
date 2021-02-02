@@ -5,20 +5,21 @@ export default function importFromLocalStorage() {
 
     let title = document.querySelector('.project-title').innerText;
 
+    let importedData = JSON.parse(localStorage.getItem(title));
+    console.log('Imported Data:')
+    console.log(importedData)
+
     let projectNames = Object.keys(localStorage);
     let projects = [];
 
-    projectNames.forEach(key => projects.push(JSON.parse(localStorage.getItem(key))))
+    projectNames.forEach(key => {
+        if (key == title) {
+            projects.push(JSON.parse(localStorage.getItem(key)))
+        }
+    })
 
-    console.log(projectNames)
-
-    // projects.forEach(project => {
-    //     console.log(projects);
-    //     // let task = project.pop();
-    //     console.log(task);
-    //     addTaskToDOM(task);
-    // })
-
-    // renderSpecific.forEach(task => addTaskToDOM(task));
+    projects.forEach(arr => {
+        arr.forEach(task => addTaskToDOM(task))
+    });
 
 }

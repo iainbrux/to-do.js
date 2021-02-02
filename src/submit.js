@@ -14,8 +14,6 @@ export default function submit() {
 
     let temp = document.querySelector('.project-title').innerText;
     let retrievedJSON = JSON.parse(localStorage.getItem(temp));
-    console.log('Retrieved JSON:')
-    console.log(retrievedJSON)
 
     const newTask = new Task();
 
@@ -41,8 +39,6 @@ export default function submit() {
                 retrievedJSON = [];
             }
             retrievedJSON.push(newTask);
-            console.log(`JSON Array:`)
-            console.log(retrievedJSON);
             addTaskToDOM(newTask);
             return addToLocalStorage();
         }
