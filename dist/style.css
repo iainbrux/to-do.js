@@ -211,7 +211,7 @@ header h2 {
     border: 1px solid white;
     color: white;
     border-radius: 5px;
-    display: flex;
+    display: none;
     margin: 20px;
     padding: 20px;
     justify-content: flex-end;

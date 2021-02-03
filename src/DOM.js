@@ -1,9 +1,9 @@
 import submit from "./submit";
-import importFromLocalStorage from './importFromLS';
+import importFromLocalStorage from './importFromLS'
 import checkboxStatus from './checkboxStatusLS';
 import removeNode from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
-import renderTasksForProject from './buttonsConfig';
+import addTaskToDOM from './renderTask'
 
 function render() {
     addToTasks();
@@ -18,6 +18,8 @@ function render() {
     if (localStorage.length > 0) {
         importFromLocalStorage();
     }
+
+    renderList();
 
 }
 
@@ -105,7 +107,7 @@ function exitButton() {
 
 }
 
-function addNewProject() {
+export function addNewProject() {
 
     let addNewProjectDiv = document.querySelector('.new-project');
 
@@ -124,28 +126,51 @@ function addNewProject() {
     let projectSubmitBtn = document.querySelector('.project-submit');
     projectSubmitBtn.addEventListener('click', () => {
         addProjectToDOM();
-        thisThing();
+        renderList();
     });
 
 }
 
-function thisThing() {
-    let projects = document.querySelectorAll('.title');
+function renderList() {
 
-    projects.forEach(project => {
-        project.addEventListener('click', renderTasksForProject = () => {
+    let projectsList = document.querySelector('.projects');
+    let titles = projectsList.querySelectorAll('.title');
+
+    titles.forEach(project => {
+        
+        project.addEventListener('click', () => {
 
             let tasksContainer = document.querySelector('.tasks-container');
             let newToDo = document.querySelector('.to-do-add');
             let projectTitle = document.querySelector('.project-title');
+            let newTaskButton = document.querySelector('.new-task-btn');
 
             tasksContainer.innerHTML = "";
-            newToDo.style.display = "flex";
+            newToDo.style.display = "none";
             projectTitle.innerText = project.innerText;
+            newTaskButton.style.display = "flex";
 
-            importFromLocalStorage();
+            (function importWithoutAppendingProjects() { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
+
+                let title = document.querySelector('.project-title').innerText;
+
+                let objectKeys = Object.keys(localStorage);
+                let projects = [];
+
+                objectKeys.forEach(key => {
+                    if (key == title) {
+                        projects.push(JSON.parse(localStorage.getItem(key)))
+                    }
+                })
+
+                projects.forEach(arr => {
+                    arr.forEach(task => addTaskToDOM(task))
+                });
+
+            })();
 
         });
+
     })
 
 }

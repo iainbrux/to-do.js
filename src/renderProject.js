@@ -1,4 +1,4 @@
-export default function addProjectToDOM() {
+export default function addProjectToDOM(key) {
 
     let newProject = document.querySelector('.new-project')
     let addNewBtn = document.querySelector('.add-new');
@@ -7,14 +7,18 @@ export default function addProjectToDOM() {
 
     let projectDiv = document.createElement('div');
 
+    if (key === undefined) {
+        key = projectName.value;
+    }
+
     let regex = /\s/gi;
-    let regexQuery = projectName.value;
+    let regexQuery = key;
     let className = regexQuery.replace(regex, '-');
 
 
     projectDiv.classList.add('title');
     projectDiv.id = className;
-    projectDiv.innerText = projectName.value;
+    projectDiv.innerText = key;
     projects.append(projectDiv);
     newProject.style.display = "none";
 
