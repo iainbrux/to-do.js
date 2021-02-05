@@ -15,6 +15,21 @@ export default function editNode(node, task, date) {
 
 function updateStatus(checkbox) {
 
+    const thisProject = document.querySelector('.project-title').innerText;
+    let tasksHTML = document.querySelectorAll('.task');
+
+    tasksHTML.forEach(node => {
+
+        const thisTask = node.querySelector('.description').innerText;
+        const thisDate = node.querySelector('.due').innerText;
+        const checkbox = node.querySelector('#status');
+
+        checkbox.addEventListener('click', () => {
+
+            
+        })
+    })
+
     let taskNames = Object.keys(localStorage);
     let tasks = [];
 

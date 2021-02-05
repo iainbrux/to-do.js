@@ -26,3 +26,22 @@ export default function importFromLocalStorage() {
     });
 
 }
+
+export function importWithoutAppendingProjects() { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
+
+    let title = document.querySelector('.project-title').innerText;
+
+    let objectKeys = Object.keys(localStorage);
+    let projects = [];
+
+    objectKeys.forEach(key => {
+        if (key == title) {
+            projects.push(JSON.parse(localStorage.getItem(key)))
+        }
+    })
+
+    projects.forEach(arr => {
+        arr.forEach(task => addTaskToDOM(task))
+    });
+
+};
