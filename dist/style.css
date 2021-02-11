@@ -204,10 +204,11 @@ header h2 {
     display: flex;
     flex: 1;
     margin: 0px 20px 20px 20px;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
-.new-task-btn {
+.new-task-btn,
+.delete-project-btn {
     border: 1px solid white;
     color: white;
     border-radius: 5px;

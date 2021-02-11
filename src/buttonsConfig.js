@@ -1,4 +1,4 @@
-import importFromLocalStorage from "./importFromLS";
+import importFromLocalStorage, { importWithoutAppendingProjects } from "./importFromLS";
 
 export default function editNode(node, task, date) {
 
@@ -62,7 +62,7 @@ export function deleteTask() {
                 }
             }
         })
-        
+
         retrieved = JSON.stringify(retrieved);
         localStorage.setItem(thisProject, retrieved);
         console.log(localStorage);
@@ -84,7 +84,24 @@ function renderTasksForProject() {
 
 }
 
+function deleteProject() {
+
+    let tasksContainer = document.querySelector('.tasks-container');
+    let thisProject = document.querySelector('.project-title');
+    let projectName = thisProject.innerText;
+    let sidebarProject = document.querySelector(`#${projectName}`);
+    
+    sidebarProject.remove();
+    tasksContainer.innerHTML = "";
+    thisProject.innerHTML = "";
+
+    localStorage.removeItem(projectName);
+
+}
+
 export {
     updateStatus,
-    renderTasksForProject
+    renderTasksForProject,
+    deleteProject
+
 }

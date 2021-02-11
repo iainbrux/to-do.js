@@ -5,6 +5,7 @@ export default function importFromLocalStorage() {
 
     let title = document.querySelector('.project-title');
     let newTaskButton = document.querySelector('.new-task-btn');
+    let deleteProjectButton = document.querySelector('.delete-project-btn');
 
     let objectKeys = Object.keys(localStorage);
     let projects = [];
@@ -13,6 +14,7 @@ export default function importFromLocalStorage() {
 
     title.innerText = objectKeys[r];
     newTaskButton.style.display = "flex";
+    deleteProjectButton.style.display = "flex";
 
     objectKeys.forEach(key => {
         if (key == title.innerText) {
@@ -22,7 +24,10 @@ export default function importFromLocalStorage() {
     })
 
     projects.forEach(arr => {
-        arr.forEach(task => addTaskToDOM(task))
+        if (arr.length > 0) {
+            console.log('Hi');
+            arr.forEach(task => addTaskToDOM(task))
+        }
     });
 
 }

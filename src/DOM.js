@@ -1,9 +1,10 @@
 import submit from "./submit";
 import importFromLocalStorage from './importFromLS'
 import checkboxStatus from './checkboxStatusLS';
-import removeNode, { deleteTask } from './buttonsConfig';
+import removeNode, { deleteTask, deleteProject } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
 import addTaskToDOM from './renderTask';
+import tidyLocalStorage from './tidyLocalStorage';
 
 function render() {
     addToTasks();
@@ -14,6 +15,8 @@ function render() {
     checkboxStatus();
     addNewProject();
     deleteFromTasks();
+    deleteFromProjects();
+    tidyLocalStorage();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
@@ -25,10 +28,17 @@ function render() {
 let taskName = document.querySelector('#task');
 let taskDate = document.querySelector('#due-date');
 
+function deleteFromProjects() {
+
+    let deleteProjectButton = document.querySelectorAll('.delete-project-btn');
+    deleteProjectButton.forEach(btn => btn.addEventListener('click', () => deleteProject()))
+
+}
+
 function deleteFromTasks() {
 
     let deleteButtons = document.querySelectorAll('.delete');
-    deleteButtons.forEach(btn => btn.addEventListener('click', () => deleteTask()));
+    deleteButtons.forEach(btn => btn.addEventListener('click', () => deleteTask()))
 
 }
 
@@ -84,12 +94,15 @@ function newTaskButton() {
 function exitButton() {
 
     let newTaskBtn = document.querySelector('.new-task-btn');
+    let deleteProjectButton = document.querySelector('.delete-project-btn');
     let newToDo = document.querySelector('.to-do-add');
     let exit = document.querySelector('.exit');
 
     exit.addEventListener('click', () => {
         newToDo.style.display = "none";
-        newTaskBtn.style.display = "flex"
+        newTaskBtn.style.display = "flex";
+        deleteProjectButton.style.display = "flex";
+        deleteTask();
     });
 
 }
@@ -131,11 +144,13 @@ function renderList() {
             let newToDo = document.querySelector('.to-do-add');
             let projectTitle = document.querySelector('.project-title');
             let newTaskButton = document.querySelector('.new-task-btn');
+            let deleteProjectButton = document.querySelector('.delete-project-btn');
 
             tasksContainer.innerHTML = "";
             newToDo.style.display = "none";
             projectTitle.innerText = project.innerText;
             newTaskButton.style.display = "flex";
+            deleteProjectButton.style.display = "flex";
 
             (function importWithoutAppendingProjects() { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
 
