@@ -1,9 +1,9 @@
 import submit from "./submit";
 import importFromLocalStorage from './importFromLS'
 import checkboxStatus from './checkboxStatusLS';
-import removeNode from './buttonsConfig';
+import removeNode, { deleteTask } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
-import addTaskToDOM from './renderTask'
+import addTaskToDOM from './renderTask';
 
 function render() {
     addToTasks();
@@ -13,13 +13,12 @@ function render() {
     exitButton();
     checkboxStatus();
     addNewProject();
+    deleteFromTasks();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
     }
     renderList();
-
-    deleteFromTasks();
 
 }
 
@@ -28,34 +27,8 @@ let taskDate = document.querySelector('#due-date');
 
 function deleteFromTasks() {
 
-    let tasksHTML = document.querySelectorAll('.task');
-    let thisProject = document.querySelector('.project-title').innerText;
-
-    tasksHTML.forEach(node => {
-
-        let thisTask = node.querySelector('.description').innerText;
-        let thisDate = node.querySelector('.due').innerText;
-        let deleteBtn = node.querySelector('.delete');
-
-        deleteBtn.addEventListener('click', () => {
-
-            let retrieved = JSON.parse(localStorage.getItem([thisProject]));
-            retrieved.forEach(task => {
-                for (let key in task) {
-                    if (key === thisTask && task[key].due === thisDate) {
-                        let index = retrieved.findIndex(t => t[key].due === thisDate);
-                        retrieved.splice(index, 1);
-                    }
-                }
-            })
-            retrieved = JSON.stringify(retrieved);
-            localStorage.setItem(thisProject, retrieved);
-            console.log(localStorage);
-            node.remove();
-
-        });
-
-    });
+    let deleteButtons = document.querySelectorAll('.delete');
+    deleteButtons.forEach(btn => btn.addEventListener('click', () => deleteTask()));
 
 }
 

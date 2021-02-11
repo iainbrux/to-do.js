@@ -1,4 +1,4 @@
-import editNode, { updateStatus } from './buttonsConfig';
+import editNode, { deleteTask, updateStatus } from './buttonsConfig';
 
 export default function addTaskToDOM(task) {
 
@@ -51,13 +51,7 @@ export default function addTaskToDOM(task) {
 
         deleteBtn.classList.add('delete');
         deleteBtn.innerText = "Delete";
-        deleteBtn.addEventListener('click', () => {
-
-            // localStorage.removeItem(thisProject[descDiv.innerText]);
-            taskDiv.remove();
-            let test = JSON.parse(localStorage[thisProject])
-            console.log('This is test:' + test)
-        })
+        deleteBtn.addEventListener('click', () => deleteTask())
 
         editBtn.classList.add('edit');
         editBtn.innerText = "Edit";

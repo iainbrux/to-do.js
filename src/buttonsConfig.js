@@ -13,7 +13,7 @@ export default function editNode(node, task, date) {
 
 }
 
-function updateStatus(checkbox) {
+function updateStatus() {
 
     const thisProject = document.querySelector('.project-title').innerText;
     let tasksHTML = document.querySelectorAll('.task');
@@ -21,36 +21,56 @@ function updateStatus(checkbox) {
     tasksHTML.forEach(node => {
 
         const thisTask = node.querySelector('.description').innerText;
-        const thisDate = node.querySelector('.due').innerText;
         const checkbox = node.querySelector('#status');
-
-        checkbox.addEventListener('click', () => {
-
-            
-        })
-    })
-
-    let taskNames = Object.keys(localStorage);
-    let tasks = [];
-
-    taskNames.forEach(task => {
-        tasks.push(JSON.parse(localStorage.getItem(task)));
-    })
-
-    tasks.forEach(task => {
-
-        let query = task.name;
-        let thisTask = tasks.find(object => object.name === query);
         let isChecked = checkbox.checked;
 
-        thisTask.status = isChecked;
 
-        let taskJSON = JSON.stringify(task);
-        localStorage.setItem(query, taskJSON);
+        console.log(isChecked)
+        let retrieved = JSON.parse(localStorage.getItem(thisProject));
+        retrieved.forEach(task => {
+            for (let key in task) {
+                if (key === thisTask) {
+                    task[key].status = isChecked;
+                }
+            }
+        })
+        retrieved = JSON.stringify(retrieved);
+        localStorage.setItem(thisProject, retrieved);
+        console.log(localStorage);
 
     })
 
 }
+
+export function deleteTask() {
+
+    let tasksHTML = document.querySelectorAll('.task');
+    let thisProject = document.querySelector('.project-title').innerText;
+
+    tasksHTML.forEach(node => {
+
+        let thisTask = node.querySelector('.description').innerText;
+        let thisDate = node.querySelector('.due').innerText;
+
+        let retrieved = JSON.parse(localStorage.getItem(thisProject));
+        retrieved.forEach(task => {
+            for (let key in task) {
+                if (key === thisTask) {
+                    let index = retrieved.findIndex(t => t[key].due === thisDate);
+                    retrieved.splice(index, 1);
+                    console.log(index);
+                }
+            }
+        })
+        
+        retrieved = JSON.stringify(retrieved);
+        localStorage.setItem(thisProject, retrieved);
+        console.log(localStorage);
+        node.remove();
+
+    });
+
+};
 
 function renderTasksForProject() {
 
