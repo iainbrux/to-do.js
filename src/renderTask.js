@@ -18,7 +18,7 @@ export default function addTaskToDOM(task) {
         checkbox.type = "checkbox";
         checkbox.name = "status";
         checkbox.id = "status";
-        checkbox.addEventListener('click', () => updateStatus(checkbox));
+        checkbox.addEventListener('click', () => updateStatus());
 
     })();
 
@@ -51,7 +51,7 @@ export default function addTaskToDOM(task) {
 
         deleteBtn.classList.add('delete');
         deleteBtn.innerText = "Delete";
-        deleteBtn.addEventListener('click', () => deleteTask())
+        deleteBtn.addEventListener('click', () => deleteTask(taskDiv));
 
         editBtn.classList.add('edit');
         editBtn.innerText = "Edit";

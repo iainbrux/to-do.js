@@ -1,4 +1,6 @@
-import importFromLocalStorage, { importWithoutAppendingProjects } from "./importFromLS";
+import importFromLocalStorage, {
+    importWithoutAppendingProjects
+} from "./importFromLS";
 
 export default function editNode(node, task, date) {
 
@@ -24,8 +26,6 @@ function updateStatus() {
         const checkbox = node.querySelector('#status');
         let isChecked = checkbox.checked;
 
-
-        console.log(isChecked)
         let retrieved = JSON.parse(localStorage.getItem(thisProject));
         retrieved.forEach(task => {
             for (let key in task) {
@@ -36,39 +36,29 @@ function updateStatus() {
         })
         retrieved = JSON.stringify(retrieved);
         localStorage.setItem(thisProject, retrieved);
-        console.log(localStorage);
 
     })
 
 }
 
-export function deleteTask() {
+function deleteTask(task) {
 
-    let tasksHTML = document.querySelectorAll('.task');
-    let thisProject = document.querySelector('.project-title').innerText;
+    const thisProject = document.querySelector('.project-title').innerText;
+    let thisTask = task.querySelector('.description').innerText;
 
-    tasksHTML.forEach(node => {
-
-        let thisTask = node.querySelector('.description').innerText;
-        let thisDate = node.querySelector('.due').innerText;
-
-        let retrieved = JSON.parse(localStorage.getItem(thisProject));
-        retrieved.forEach(task => {
-            for (let key in task) {
-                if (key === thisTask) {
-                    let index = retrieved.findIndex(t => t[key].due === thisDate);
-                    retrieved.splice(index, 1);
-                    console.log(index);
-                }
+    let retrieved = JSON.parse(localStorage.getItem(thisProject));
+    retrieved.forEach(task => {
+        for (let key in task) {
+            if (key === thisTask) {
+                let index = retrieved.findIndex(t => t === task);
+                retrieved.splice(index, 1);
             }
-        })
+        }
+    })
 
-        retrieved = JSON.stringify(retrieved);
-        localStorage.setItem(thisProject, retrieved);
-        console.log(localStorage);
-        node.remove();
-
-    });
+    task.remove();
+    retrieved = JSON.stringify(retrieved);
+    localStorage.setItem(thisProject, retrieved)
 
 };
 
@@ -90,7 +80,7 @@ function deleteProject() {
     let thisProject = document.querySelector('.project-title');
     let projectName = thisProject.innerText;
     let sidebarProject = document.querySelector(`#${projectName}`);
-    
+
     sidebarProject.remove();
     tasksContainer.innerHTML = "";
     thisProject.innerHTML = "";
@@ -102,6 +92,6 @@ function deleteProject() {
 export {
     updateStatus,
     renderTasksForProject,
-    deleteProject
-
+    deleteProject,
+    deleteTask
 }
