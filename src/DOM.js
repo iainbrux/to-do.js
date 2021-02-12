@@ -11,7 +11,7 @@ function render() {
     clearTaskInput();
     editTask();
     newTaskButton();
-    exitButton();
+    // exitButton();
     checkboxStatus();
     addNewProject();
     deleteFromTasks();
@@ -91,21 +91,21 @@ function newTaskButton() {
 
 }
 
-function exitButton() {
+// function exitButton() {
 
-    let newTaskBtn = document.querySelector('.new-task-btn');
-    let deleteProjectButton = document.querySelector('.delete-project-btn');
-    let newToDo = document.querySelector('.to-do-add');
-    let exit = document.querySelector('.exit');
+//     let newTaskBtn = document.querySelector('.new-task-btn');
+//     let deleteProjectButton = document.querySelector('.delete-project-btn');
+//     let newToDo = document.querySelector('.to-do-add');
+//     let exit = document.querySelector('.exit');
 
-    exit.addEventListener('click', () => {
-        newToDo.style.display = "none";
-        newTaskBtn.style.display = "flex";
-        deleteProjectButton.style.display = "flex";
-        deleteTask();
-    });
+//     exit.addEventListener('click', () => {
+//         newToDo.style.display = "none";
+//         newTaskBtn.style.display = "flex";
+//         deleteProjectButton.style.display = "flex";
+//         deleteTask();
+//     });
 
-}
+// }
 
 export function addNewProject() {
 
