@@ -55,7 +55,7 @@ export default function addTaskToDOM(task) {
 
         editBtn.classList.add('edit');
         editBtn.innerText = "Edit";
-        editBtn.addEventListener('click', () => editNode(taskDiv, descDiv.innerText, dueDiv.innerText));
+        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText); deleteTask(taskDiv)});
 
         btnsDiv.append(editBtn, deleteBtn);
 

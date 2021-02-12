@@ -52,7 +52,7 @@ function editTask() {
         let thisDate = node.querySelector('.due').innerText;
         let editBtn = node.querySelector('.edit');
 
-        editBtn.addEventListener('click', () => removeNode(node, thisTask, thisDate));
+        editBtn.addEventListener('click', () => {removeNode(node, thisTask, thisDate); deleteTask(thisTask)});
 
     });
 
@@ -102,7 +102,6 @@ function exitButton() {
         newToDo.style.display = "none";
         newTaskBtn.style.display = "flex";
         deleteProjectButton.style.display = "flex";
-        deleteTask();
     });
 
 }
