@@ -25,7 +25,6 @@ export default function importFromLocalStorage() {
 
     projects.forEach(arr => {
         if (arr.length > 0) {
-            console.log('Hi');
             arr.forEach(task => addTaskToDOM(task))
         }
     });

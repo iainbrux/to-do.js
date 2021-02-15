@@ -7,8 +7,6 @@ export default function tidyLocalStorage() {
 
     localStorage.clear();
 
-    console.log(objectKeys)
-
     projects.forEach(project => {
         
         let keysIndex = projects.findIndex(p => p === project);

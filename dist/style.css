@@ -141,6 +141,7 @@ header h2 {
     background-color: rgba(211, 211, 211, 0.7);
     transition-duration: 0.5s;
     color: black;
+    border-radius: 5px;
 }
 
 .task input[type="checkbox"] {
@@ -243,7 +244,8 @@ header h2 {
     justify-content: center;
 }
 
-.add-new .title:hover {
+.add-new .title:hover,
+.projects .title:hover {
     background-color: rgba(0, 255, 213, 1);
     transition-duration: 0.5s;
     color: black;

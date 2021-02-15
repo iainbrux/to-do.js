@@ -39,8 +39,6 @@ export default function addTaskToDOM(task) {
             innerData = task[key];
         }
 
-        console.log(innerData)
-
         dueDiv.innerText = innerData.due;
         checkbox.checked = innerData.status;
 
