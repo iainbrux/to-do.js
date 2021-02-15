@@ -3,6 +3,7 @@ Hello! This is my project to showcase my CRUD capabilities (no pun!) and to stap
 - Webpack
 - HTML, CSS & JS
 - Local Storage
+- Firebase
 
 Project status /-- ALMOST COMPLETE --/
 
