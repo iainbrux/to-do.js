@@ -1,16 +1,11 @@
 import Task from "./Task";
 import addTaskToDOM from './renderTask';
 
-//This function extends to DOM.js but due to the size was seperated into it's own file.
-//I'll be honest, this piece of code took me almost 20 hours to figure.
-//It's janky AF but it does what I need it to do exactly how I need it to do it. DO NOT TOUCH IT!
-//NO SERIOUSLY, DO NOT TOUCH IT!
-
 let appData = {};
 let projectName = document.querySelector('.project-title');
-window[`${projectName.innerText}Array`] = []; //Creates a dynmaically named variable that is an empty array.
+window[`${projectName.innerText}Array`] = []; //Creates a dynamically named variable that is an empty array.
 
-export default function submit() {
+export default function submit() { //This function extends into buttonsConfig.js
 
     let temp = document.querySelector('.project-title').innerText;
     let retrievedJSON = JSON.parse(localStorage.getItem(temp));

@@ -110,6 +110,10 @@ header h2 {
     border-radius: 5px;
 }
 
+.hidden-task {
+    display: none;
+}
+
 .to-do-add {
     display: none;
     margin-top: 0px;

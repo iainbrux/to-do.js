@@ -1,7 +1,7 @@
 import submit from "./submit";
 import importFromLocalStorage from './importFromLS'
 import checkboxStatus from './checkboxStatusLS';
-import removeNode, { deleteTask, deleteProject } from './buttonsConfig';
+import removeNode, { deleteTask, deleteProject, exitNode } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
 import addTaskToDOM from './renderTask';
 import tidyLocalStorage from './tidyLocalStorage';
@@ -11,12 +11,12 @@ function render() {
     clearTaskInput();
     editTask();
     newTaskButton();
-    exitButton();
     checkboxStatus();
     addNewProject();
     deleteFromTasks();
     deleteFromProjects();
     tidyLocalStorage();
+    exitButton();
 
     if (localStorage.length > 0) {
         importFromLocalStorage();
@@ -93,16 +93,8 @@ function newTaskButton() {
 
 function exitButton() {
 
-    let newTaskBtn = document.querySelector('.new-task-btn');
-    let deleteProjectButton = document.querySelector('.delete-project-btn');
-    let newToDo = document.querySelector('.to-do-add');
     let exit = document.querySelector('.exit');
-
-    exit.addEventListener('click', () => {
-        newToDo.style.display = "none";
-        newTaskBtn.style.display = "flex";
-        deleteProjectButton.style.display = "flex";
-    });
+    exit.addEventListener('click', () => exitNode());
 
 }
 

@@ -3,7 +3,6 @@ import editNode, { deleteTask, updateStatus } from './buttonsConfig';
 export default function addTaskToDOM(task) {
 
     let container = document.querySelector('.tasks-container');
-    let thisProject = document.querySelector('.project-title').innerText;
 
     let taskDiv = document.createElement('div');
     let descDiv = document.createElement('div');
@@ -55,7 +54,7 @@ export default function addTaskToDOM(task) {
 
         editBtn.classList.add('edit');
         editBtn.innerText = "Edit";
-        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText); deleteTask(taskDiv)});
+        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText)});
 
         btnsDiv.append(editBtn, deleteBtn);
 

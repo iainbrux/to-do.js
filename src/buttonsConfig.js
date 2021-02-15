@@ -1,6 +1,6 @@
-import importFromLocalStorage, {
-    importWithoutAppendingProjects
-} from "./importFromLS";
+import importFromLocalStorage from "./importFromLS";
+import Task from './Task';
+import addTaskToDOM from './renderTask';
 
 export default function editNode(node, task, date) {
 
@@ -9,9 +9,31 @@ export default function editNode(node, task, date) {
     let toDoAdd = document.querySelector('.to-do-add');
 
     node.remove();
+    deleteTask(node);
+
     toDoAdd.style.display = "flex";
     taskName.value = task;
     taskDate.value = date;
+
+}
+
+function exitNode() {
+
+    let newTaskBtn = document.querySelector('.new-task-btn');
+    let newToDo = document.querySelector('.to-do-add');
+    let name = document.querySelector('#task')
+    let due = document.querySelector('#due-date')
+
+    const newTask = new Task();
+
+    newTask[name.value] = {
+        due: due.value,
+        status: false
+    }
+
+    newToDo.style.display = "none";
+    newTaskBtn.style.display = "flex";
+    addTaskToDOM(newTask);
 
 }
 
@@ -93,5 +115,6 @@ export {
     updateStatus,
     renderTasksForProject,
     deleteProject,
-    deleteTask
+    deleteTask,
+    exitNode
 }
