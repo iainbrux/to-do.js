@@ -66,3 +66,68 @@ export default function addTaskToDOM(task) {
     })();
 
 };
+
+function addTaskToDOMFromFirebase(task, due, status) {
+
+    let container = document.querySelector('.tasks-container');
+
+    let taskDiv = document.createElement('div');
+    let descDiv = document.createElement('div');
+    let dueDiv = document.createElement('div');
+    let btnsDiv = document.createElement('div');
+    let deleteBtn = document.createElement('div');
+    let editBtn = document.createElement('div');
+    let checkbox = document.createElement('input');
+
+    (function inputTypeCheckbox() {
+
+        checkbox.type = "checkbox";
+        checkbox.name = "status";
+        checkbox.id = "status";
+        checkbox.addEventListener('click', () => updateStatus());
+
+    })();
+
+    (function addClassNames() {
+
+        taskDiv.classList.add('task');
+        descDiv.classList.add('description');
+        dueDiv.classList.add('due');
+        btnsDiv.classList.add('btns');
+
+    })();
+
+    (function addDataToDivs() {
+
+        descDiv.innerText = task;
+        dueDiv.innerText = due;
+        checkbox.checked = status;
+
+    })();
+
+    (function addButtonsToTaskDiv() {
+
+        deleteBtn.classList.add('delete');
+        deleteBtn.innerText = "Delete";
+        deleteBtn.addEventListener('click', () => deleteTask(taskDiv));
+
+        editBtn.classList.add('edit');
+        editBtn.innerText = "Edit";
+        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText)});
+
+        btnsDiv.append(editBtn, deleteBtn);
+
+    })();
+
+    (function appendToContainer() {
+
+        taskDiv.append(checkbox, descDiv, dueDiv, btnsDiv);
+        container.append(taskDiv);
+
+    })();
+
+};
+
+export {
+    addTaskToDOMFromFirebase
+}

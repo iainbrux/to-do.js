@@ -34,7 +34,7 @@
             <section class="tasks">
                 <h2 class="project-title">Create a project to begin.</h2>
                 <div class="tasks-container">
-                   
+
                 </div>
                 <div class="to-do-add to-do-active">
                     <input type="text" name="task" id="task" placeholder="Task">
@@ -55,6 +55,30 @@
     </div>
 </body>
 <footer>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA5odC1VGlY1Q5zDayTn-rh8aDyldCyrIk",
+            authDomain: "to-do-list-13869.firebaseapp.com",
+            projectId: "to-do-list-13869",
+            storageBucket: "to-do-list-13869.appspot.com",
+            messagingSenderId: "353139705066",
+            appId: "1:353139705066:web:9f23ef673e18e271e34393"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        db.settings({
+            timestampsInSnapshots: true
+        });
+    </script>
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">

@@ -1,4 +1,4 @@
-import importFromLocalStorage from "./importFromLS";
+import importFromLocalStorage from "./import";
 import Task from './Task';
 import addTaskToDOM from './renderTask';
 

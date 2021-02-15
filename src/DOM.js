@@ -1,5 +1,5 @@
 import submit from "./submit";
-import importFromLocalStorage from './importFromLS'
+import importFromLocalStorage, { importFromFirebase } from './import'
 import checkboxStatus from './checkboxStatusLS';
 import removeNode, { deleteTask, deleteProject, exitNode } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
@@ -22,6 +22,7 @@ function render() {
         importFromLocalStorage();
     }
     renderList();
+    importFromFirebase();
 
 }
 
@@ -52,7 +53,7 @@ function editTask() {
         let thisDate = node.querySelector('.due').innerText;
         let editBtn = node.querySelector('.edit');
 
-        editBtn.addEventListener('click', () => {removeNode(node, thisTask, thisDate); deleteTask(thisTask)});
+        editBtn.addEventListener('click', () => { removeNode(node, thisTask, thisDate); deleteTask(thisTask) });
 
     });
 
@@ -63,7 +64,7 @@ function addToTasks() {
     let submitButton = document.querySelector('.submit');
 
     submitButton.addEventListener('click', () => {
-        (taskName.value === "" || taskDate.value === "") ? alert('Please complete all input fields.'): submit();
+        (taskName.value === "" || taskDate.value === "") ? alert('Please complete all input fields.') : submit();
     });
 
 }
@@ -128,7 +129,7 @@ function renderList() {
     let titles = projectsList.querySelectorAll('.title');
 
     titles.forEach(project => {
-        
+
         project.addEventListener('click', () => {
 
             let tasksContainer = document.querySelector('.tasks-container');
