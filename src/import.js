@@ -31,7 +31,19 @@ export default function importFromLocalStorage() {
 
 }
 
-function importWithoutAppendingProjects() { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
+function importWithoutAppendingProjects(project) { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
+
+    let tasksContainer = document.querySelector('.tasks-container');
+    let newToDo = document.querySelector('.to-do-add');
+    let projectTitle = document.querySelector('.project-title');
+    let newTaskButton = document.querySelector('.new-task-btn');
+    let deleteProjectButton = document.querySelector('.delete-project-btn');
+
+    tasksContainer.innerHTML = "";
+    newToDo.style.display = "none";
+    projectTitle.innerText = project.innerText;
+    newTaskButton.style.display = "flex";
+    deleteProjectButton.style.display = "flex";
 
     let title = document.querySelector('.project-title').innerText;
 
