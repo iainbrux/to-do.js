@@ -244,8 +244,21 @@ header h2 {
     justify-content: center;
 }
 
+.storage-title {
+    color: white;
+    cursor: default;
+    text-align: center;
+}
+
+.storage-selection {
+    display: flex;
+    flex-direction: row;
+}
+
 .add-new .title:hover,
-.projects .title:hover {
+.projects .title:hover,
+.firebase:hover,
+.localstorage:hover {
     background-color: rgba(0, 255, 213, 1);
     transition-duration: 0.5s;
     color: black;
@@ -253,7 +266,9 @@ header h2 {
 }
 
 .add-new .title,
-.projects .title {
+.projects .title,
+.firebase,
+.localstorage {
     flex: 1;
     margin: 20px;
     padding: 20px;
