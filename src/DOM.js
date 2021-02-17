@@ -1,7 +1,6 @@
 import submit from "./submit";
 import importFromLocalStorage, { importFromFirebase, importWithoutAppendingProjects } from './import'
-import checkboxStatus from './checkboxStatusLS';
-import removeNode, { deleteTask, deleteProject, exitNode } from './buttonsConfig';
+import removeNode, { deleteTask, deleteProject, exitNode, updateStatus } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
 import tidyLocalStorage from './tidyLocalStorage';
 
@@ -80,6 +79,11 @@ function newTaskButton() {
 function exitButton() {
     let exit = document.querySelector('.exit');
     exit.addEventListener('click', () => exitNode());
+}
+
+function checkboxStatus() {
+    let checkboxes = document.querySelectorAll('#status');
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', () => updateStatus()));
 }
 
 function addNewProject() {
