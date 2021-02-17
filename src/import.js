@@ -31,7 +31,7 @@ export default function importFromLocalStorage() {
 
 }
 
-function importWithoutAppendingProjects(project) { //Needs converting to SOLID, but written here to prevent bugs from importFromLocalStorage();
+function importWithoutAppendingProjects(project) {
 
     let tasksContainer = document.querySelector('.tasks-container');
     let newToDo = document.querySelector('.to-do-add');
