@@ -16,4 +16,4 @@ Features I will aim to add:
 Current known bugs:
 
 - Takes two clicks on either edit or delete button from user created tasks to fire event (Fixed)
-- Edit button is not responding correctly to Local Storage (Fixed)
+- Edit button is not responding correctly to Local Storage (In Progress)
