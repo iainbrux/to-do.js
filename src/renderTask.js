@@ -12,58 +12,38 @@ export default function addTaskToDOM(task) {
     let editBtn = document.createElement('div');
     let checkbox = document.createElement('input');
 
-    (function inputTypeCheckbox() {
+    checkbox.type = "checkbox";
+    checkbox.name = "status";
+    checkbox.id = "status";
+    checkbox.addEventListener('click', () => updateStatus());
 
-        checkbox.type = "checkbox";
-        checkbox.name = "status";
-        checkbox.id = "status";
-        checkbox.addEventListener('click', () => updateStatus());
+    taskDiv.classList.add('task');
+    descDiv.classList.add('description');
+    dueDiv.classList.add('due');
+    btnsDiv.classList.add('btns');
 
-    })();
+    let innerData = null;
 
-    (function addClassNames() {
+    for (let key in task) {
+        descDiv.innerText = key;
+        innerData = task[key];
+    }
 
-        taskDiv.classList.add('task');
-        descDiv.classList.add('description');
-        dueDiv.classList.add('due');
-        btnsDiv.classList.add('btns');
+    dueDiv.innerText = innerData.due;
+    checkbox.checked = innerData.status;
 
-    })();
+    deleteBtn.classList.add('delete'); 
+    deleteBtn.innerText = "Delete"; 
+    deleteBtn.addEventListener('click', () => deleteTask(taskDiv)); 
 
-    (function addDataToDivs() {
+    editBtn.classList.add('edit'); 
+    editBtn.innerText = "Edit"; 
+    editBtn.addEventListener('click', () => { editNode(taskDiv, descDiv.innerText, dueDiv.innerText) }); 
 
-        let innerData = null;
+    btnsDiv.append(editBtn, deleteBtn); 
 
-        for (let key in task) {
-            descDiv.innerText = key;
-            innerData = task[key];
-        }
-
-        dueDiv.innerText = innerData.due;
-        checkbox.checked = innerData.status;
-
-    })();
-
-    (function addButtonsToTaskDiv() {
-
-        deleteBtn.classList.add('delete');
-        deleteBtn.innerText = "Delete";
-        deleteBtn.addEventListener('click', () => deleteTask(taskDiv));
-
-        editBtn.classList.add('edit');
-        editBtn.innerText = "Edit";
-        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText)});
-
-        btnsDiv.append(editBtn, deleteBtn);
-
-    })();
-
-    (function appendToContainer() {
-
-        taskDiv.append(checkbox, descDiv, dueDiv, btnsDiv);
-        container.append(taskDiv);
-
-    })();
+    taskDiv.append(checkbox, descDiv, dueDiv, btnsDiv); 
+    container.append(taskDiv); 
 
 };
 
@@ -79,52 +59,32 @@ function addTaskToDOMFromFirebase(task, due, status) {
     let editBtn = document.createElement('div');
     let checkbox = document.createElement('input');
 
-    (function inputTypeCheckbox() {
+    checkbox.type = "checkbox";
+    checkbox.name = "status";
+    checkbox.id = "status";
+    checkbox.addEventListener('click', () => updateStatus());
 
-        checkbox.type = "checkbox";
-        checkbox.name = "status";
-        checkbox.id = "status";
-        checkbox.addEventListener('click', () => updateStatus());
+    taskDiv.classList.add('task');
+    descDiv.classList.add('description');
+    dueDiv.classList.add('due');
+    btnsDiv.classList.add('btns');
 
-    })();
+    descDiv.innerText = task;
+    dueDiv.innerText = due;
+    checkbox.checked = status;
 
-    (function addClassNames() {
+    deleteBtn.classList.add('delete'); 
+    deleteBtn.innerText = "Delete"; 
+    deleteBtn.addEventListener('click', () => deleteTask(taskDiv)); 
 
-        taskDiv.classList.add('task');
-        descDiv.classList.add('description');
-        dueDiv.classList.add('due');
-        btnsDiv.classList.add('btns');
+    editBtn.classList.add('edit'); 
+    editBtn.innerText = "Edit";  
+    editBtn.addEventListener('click', () => { editNode(taskDiv, descDiv.innerText, dueDiv.innerText) });
 
-    })();
+    btnsDiv.append(editBtn, deleteBtn);
 
-    (function addDataToDivs() {
-
-        descDiv.innerText = task;
-        dueDiv.innerText = due;
-        checkbox.checked = status;
-
-    })();
-
-    (function addButtonsToTaskDiv() {
-
-        deleteBtn.classList.add('delete');
-        deleteBtn.innerText = "Delete";
-        deleteBtn.addEventListener('click', () => deleteTask(taskDiv));
-
-        editBtn.classList.add('edit');
-        editBtn.innerText = "Edit";
-        editBtn.addEventListener('click', () => {editNode(taskDiv, descDiv.innerText, dueDiv.innerText)});
-
-        btnsDiv.append(editBtn, deleteBtn);
-
-    })();
-
-    (function appendToContainer() {
-
-        taskDiv.append(checkbox, descDiv, dueDiv, btnsDiv);
-        container.append(taskDiv);
-
-    })();
+    taskDiv.append(checkbox, descDiv, dueDiv, btnsDiv);
+    container.append(taskDiv); 
 
 };
 

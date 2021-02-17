@@ -1,6 +1,7 @@
-import importFromLocalStorage from "./import";
+import importFromLocalStorage, { importFromFirebase } from "./import";
 import Task from './Task';
 import addTaskToDOM from './renderTask';
+import { local, cloud, render } from './DOM';
 
 export default function editNode(node, task, date) {
 
@@ -111,10 +112,28 @@ function deleteProject() {
 
 }
 
+function selectLocalStorage() {
+    cloud = false;
+    local = true;
+    console.log(`Cloud Status: ${cloud}.`);
+    console.log(`Local Status: ${local}.`);
+    importFromLocalStorage();
+}
+
+function selectCloudStorage() {
+    local = false;
+    cloud = true;
+    console.log(`Cloud Status: ${cloud}.`);
+    console.log(`Local Status: ${local}.`);
+    importFromFirebase();
+}
+
 export {
     updateStatus,
     renderTasksForProject,
     deleteProject,
     deleteTask,
-    exitNode
+    exitNode,
+    selectLocalStorage,
+    selectCloudStorage
 }

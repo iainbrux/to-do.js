@@ -1,6 +1,6 @@
 import submit from "./submit";
-import importFromLocalStorage, { importFromFirebase, importWithoutAppendingProjects } from './import'
-import removeNode, { deleteTask, deleteProject, exitNode, updateStatus } from './buttonsConfig';
+import { importWithoutAppendingProjects } from './import'
+import removeNode, { deleteTask, deleteProject, exitNode, updateStatus, selectLocalStorage, selectCloudStorage } from './buttonsConfig';
 import addProjectToDOM from "./renderProject";
 import tidyLocalStorage from './tidyLocalStorage';
 
@@ -9,8 +9,9 @@ import tidyLocalStorage from './tidyLocalStorage';
 let cloud = false;
 let local = true;
 
+storageSelection();
+
 function render() {
-    addToTasks();
     clearTaskInput();
     editTask();
     newTaskButton();
@@ -20,13 +21,8 @@ function render() {
     deleteFromProjects();
     tidyLocalStorage();
     exitButton();
-
-    if (localStorage.length > 0) {
-        importFromLocalStorage();
-    }
     renderList();
-    importFromFirebase(); //For testing ONLY (will be decided upon boolean)
-
+    addToTasks();
 }
 
 let taskName = document.querySelector('#task');
@@ -55,13 +51,13 @@ function editTask() {
 function addToTasks() {
     let submitButton = document.querySelector('.submit');
     submitButton.addEventListener('click', () => {
-        (taskName.value === "" || taskDate.value === "") ? alert('Please complete all input fields.') : submit();
+        (taskName.value === "" || taskDate.value === "") ? alert('Please complete all input fields.') : submit(); //Is recognising filled fields as empty
     });
 }
 
 function clearTaskInput() {
     let clearButton = document.querySelector('#clear');
-    clearButton.addEventListener('click', () => {
+    clearButton.addEventListener('click', () => {       
         taskName.value = "";
         taskDate.value = "";
     })
@@ -121,7 +117,26 @@ function renderList() {
     })
 }
 
+function storageSelection() {
+    const localButton = document.querySelector('.localstorage');
+    const cloudButton = document.querySelector('.firebase');
+    localButton.addEventListener('click', () => {
+        localButton.classList.add('disabledbtn');
+        cloudButton.classList.remove('disabledbtn');
+        selectLocalStorage(); 
+        render();
+    });
+    cloudButton.addEventListener('click', () => {
+        localButton.classList.remove('disabledbtn');
+        cloudButton.classList.add('disabledbtn');
+        selectCloudStorage();
+        render();
+    });
+}
+
 export {
     render,
-    addNewProject
+    addNewProject,
+    cloud,
+    local
 }

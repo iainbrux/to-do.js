@@ -180,6 +180,12 @@ header h2 {
     cursor: pointer;
 }
 
+.disabledbtn {
+    background-color: rgb(0, 102, 255);
+    color: black;
+    pointer-events: none;
+}
+
 .to-do-add input[type="text"] {
     flex: 1;
     margin: 20px;
@@ -273,11 +279,11 @@ header h2 {
     margin: 20px;
     padding: 20px;
     font-size: 20px;
-    color: white;
     display: flex;
     justify-content: center;
     border: 1px solid white;
     border-radius: 5px;
+    color: white;
 }
 
 .container .list {
