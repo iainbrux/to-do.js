@@ -1,7 +1,7 @@
 import importFromLocalStorage, { importFromFirebase } from "./import";
 import Task from './Task';
 import addTaskToDOM from './renderTask';
-import { local, cloud, render } from './DOM';
+import { local, cloud } from './DOM';
 
 export default function editNode(node, task, date) {
 
@@ -117,6 +117,7 @@ function selectLocalStorage() {
     local = true;
     console.log(`Cloud Status: ${cloud}.`);
     console.log(`Local Status: ${local}.`);
+    clearDOM();
     importFromLocalStorage();
 }
 
@@ -125,7 +126,18 @@ function selectCloudStorage() {
     cloud = true;
     console.log(`Cloud Status: ${cloud}.`);
     console.log(`Local Status: ${local}.`);
+    clearDOM();
     importFromFirebase();
+}
+
+function clearDOM() {
+    let projectTitle = document.querySelector('.project-title');
+    let tasksContainer = document.querySelector('.tasks-container');
+    let projectList = document.querySelector('.projects');
+
+    let arrayDOM = [projectList, projectTitle, tasksContainer]
+
+    arrayDOM.forEach(node => node.innerHTML = "");
 }
 
 export {
@@ -135,5 +147,6 @@ export {
     deleteTask,
     exitNode,
     selectLocalStorage,
-    selectCloudStorage
+    selectCloudStorage,
+    clearDOM
 }

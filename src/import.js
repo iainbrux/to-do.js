@@ -1,5 +1,6 @@
 import addProjectToDOM from './renderProject';
 import addTaskToDOM, { addTaskToDOMFromFirebase } from './renderTask';
+import { renderFirebase } from './renderFirebase';
 
 export default function importFromLocalStorage() {
 
@@ -74,22 +75,19 @@ function importFromFirebase() {
         names: []
     }
 
-    let titles = document.querySelectorAll('.title');
-    titles.forEach(title => projectsObject.names.push(title.innerText));
-    projectsObject.names.pop();
-
-    db.collection('projects').doc('project names').set(projectsObject)
-
-    db.collection('projects').doc(title.innerText).collection('tasks').get().then(snapshot => {
-        snapshot.forEach(task => {
-            let data = task.data();
-            addTaskToDOMFromFirebase(data.task, data.due, data.status)
-        })
-    })
-
-    db.collection('projects').get().then(snapshot => {
-        snapshot.docs.forEach(project => {
-            project.data().names.forEach(name => console.log(name))
+    db.collection('projects').doc('project names').get().then(snapshot => {
+        snapshot.data().names.forEach(name => projectsObject.names.push(name));
+    }).then(() => {
+        projectsObject.names.forEach(name => addProjectToDOM(name))
+    }).then(() => {
+        let r = Math.floor(Math.random() * projectsObject.names.length)
+        title.innerText = projectsObject.names[r];
+    }).then(() => {
+        renderFirebase(title);
+    }).then(() => {
+        let projects = document.querySelectorAll('.title');
+        projects.forEach(project => {
+            project.addEventListener('click', () => renderFirebase(project));
         })
     })
 
