@@ -5,7 +5,7 @@ Hello! This is my project to showcase my CRUD capabilities (no pun!) and to stap
 - Local Storage
 - Firebase
 
-Project status /-- ALMOST COMPLETE --/
+Project status /-- IN PROGRESS --/
 
 Features I will aim to add:
 - Add firebase support (Started: 15/02/2021)
