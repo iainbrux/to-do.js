@@ -3,6 +3,7 @@ import editNode, { deleteTask, updateStatus } from './buttonsConfig';
 export default function addTaskToDOM(task) {
 
     let container = document.querySelector('.tasks-container');
+    // container.innerHTML = "";
 
     let taskDiv = document.createElement('div');
     let descDiv = document.createElement('div');

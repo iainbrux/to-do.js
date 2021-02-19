@@ -1,7 +1,7 @@
 import submit from "./submit";
 import { importWithoutAppendingProjects } from './import'
 import removeNode, { deleteTask, deleteProject, exitNode, updateStatus, selectLocalStorage, selectCloudStorage } from './buttonsConfig';
-import addProjectToDOM from "./renderProject";
+import addProjectToDOM, { addProjectToDOMFirebase } from "./renderProject";
 import tidyLocalStorage from './tidyLocalStorage';
 
 //Booleans for user input of storage selection
@@ -85,6 +85,7 @@ function checkboxStatus() {
 function addNewProject() {
 
     let addNewProjectDiv = document.querySelector('.new-project');
+    let projectName = document.querySelector('#project');
 
     let addNewBtn = document.querySelector('.add-new');
     addNewBtn.addEventListener('click', () => {
@@ -100,8 +101,9 @@ function addNewProject() {
 
     let projectSubmitBtn = document.querySelector('.project-submit');
     projectSubmitBtn.addEventListener('click', () => {
-        addProjectToDOM();
-        renderList();
+        cloud ? addProjectToDOMFirebase(projectName.value) :
+        local ? addProjectToDOM() :
+        alert('Please enter a project name');
     });
 
 }
@@ -123,14 +125,12 @@ function storageSelection() {
     localButton.addEventListener('click', () => {
         localButton.classList.add('disabledbtn');
         cloudButton.classList.remove('disabledbtn');
-        selectLocalStorage(); 
-        render();
+        selectLocalStorage();
     });
     cloudButton.addEventListener('click', () => {
         localButton.classList.remove('disabledbtn');
         cloudButton.classList.add('disabledbtn');
         selectCloudStorage();
-        render();
     });
 }
 

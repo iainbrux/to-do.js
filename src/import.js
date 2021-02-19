@@ -1,6 +1,7 @@
 import addProjectToDOM from './renderProject';
 import addTaskToDOM, { addTaskToDOMFromFirebase } from './renderTask';
 import { renderFirebase } from './renderFirebase';
+import { renderTasksForProject } from './buttonsConfig';
 
 export default function importFromLocalStorage() {
 
@@ -28,7 +29,30 @@ export default function importFromLocalStorage() {
         if (arr.length > 0) {
             arr.forEach(task => addTaskToDOM(task))
         }
-    });
+    })
+
+    function getTitles() {
+        let titles = document.querySelectorAll('.title');
+        titles.forEach(title => {
+            title.addEventListener('click', () => {
+                let container = document.querySelector('.tasks-container');
+                container.innerHTML = "";
+                projects = [];
+                objectKeys.forEach(key => {
+                    if (key == title.innerText) {
+                        projects.push(JSON.parse(localStorage.getItem(key)))
+                    }
+                })
+                projects.forEach(arr => {
+                    if (arr.length > 0) {
+                        arr.forEach(task => addTaskToDOM(task))
+                    }
+                })
+            })
+        })
+    }
+
+    getTitles();
 
 }
 
