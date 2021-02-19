@@ -13,7 +13,7 @@ If this is your first time here, then go ahead and create a project. This will t
 
 ## About the project... :bulb:
 
-The project is currently compelete for Local Storage support. During the project I tried to add Firebase support for Firestore Cloud Storage, due to the time this project has taken (100+ hours so far) I have decided to move forward without Firestore for the time being so that I can continue my studies for Full Stack development and have a working portfolio project available for viewing. :raised_hands:
+The project is currently complete for Local Storage support. During the project I tried to add Firebase support for Firestore Cloud Storage, due to the time this project has taken (100+ hours so far) I have decided to move forward without Firestore for the time being so that I can continue my studies for Full Stack development and have a working portfolio project available for viewing. :raised_hands:
 
 I have decided to leave the files up for view, so if you are interested in my current progress of adding Firestore support, then feel free to take a look through the source code. As time goes on I plan to add to this project bit by bit so that I can then have a project that can showcase my ability in vanilla JavaScript.
 
